@@ -19,7 +19,12 @@ while True:
     if current_value != last_value:
         print("Counter value:", current_value)
         
-        direction = "increased" if current_value > last_value else "decreased"
+        if current_value > last_value: 
+        	direction = "increased" 
+        else: 
+        	direction = "decreased"
+
         print(f"Direction: {direction}")
         
         last_value = current_value
+

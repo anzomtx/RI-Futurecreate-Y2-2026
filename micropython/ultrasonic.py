@@ -9,7 +9,7 @@ while True:
         # Get the distance in centimeters
         distance_cm = sensor.distance_cm()
         print('Distance:', distance_cm, 'cm')
-        sleep(1)
+        sleep(.5)
     except OSError as e:
         # Handle errors, for example when the measurement times out
         print("Sensor error or out of range:", e)
