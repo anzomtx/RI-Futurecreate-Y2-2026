@@ -45,7 +45,17 @@ while True:
             received_code = 0
             for pulse in data_pulses:
                 received_code = (received_code << 1) | pulse
-            print("Raw Code:", hex(received_code))
+            
+            # convert code to HEX
+            #print("Raw Code:", hex(received_code))
+
+            print("Raw Code:", received_code)
+            
+            if(received_code == 2155860270):
+                print('1')
+            elif(received_code == 2155852110):
+                print('2')
+                
     time.sleep(0.1)
 
 

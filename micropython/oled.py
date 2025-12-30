@@ -8,6 +8,7 @@ i2c = I2C(0, scl=Pin(22), sda=Pin(21), freq=400000)
 # Check if display is found
 addr = 0x3C  # Try 0x3D if this doesn't work
 devices = i2c.scan()
+
 if addr not in devices:
     print(f"Display not found at 0x{addr:02X}")
     print("Found devices:", [hex(d) for d in devices])

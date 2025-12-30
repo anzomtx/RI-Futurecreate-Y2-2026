@@ -2,15 +2,16 @@ from machine import Pin
 import time
 
 # Define the number of positions and the GPIO pins for each switch
-POSITION_NUM = 5
-SWITCH_PINS = [18, 5, 17, 16, 4]  # Update these based on your wiring
+
+SWITCH_PINS = [18]  # Update these based on your wiring
+POSITION_NUM = len(SWITCH_PINS)
 
 ON = 0
 OFF = 1
 
 switches = []
 for pin_num in SWITCH_PINS:
-    switches.append(Pin(pin_num, Pin.IN))
+    switches.append(Pin(pin_num, Pin.IN, Pin.PULL_UP))
 
 print("DIP Switch Reader Started...")
 

@@ -1,38 +1,18 @@
-# Stepper.py
-import time
+from machine import Pin
+import Stepper
 
-class Stepper:
-    FULL_ROTATION = 2048 # Approximate number of steps for a full revolution[citation:1][citation:2]
-    HALF_STEP = [
-        [0, 0, 0, 1],
-        [0, 0, 1, 1],
-        [0, 0, 1, 0],
-        [0, 1, 1, 0],
-        [0, 1, 0, 0],
-        [1, 1, 0, 0],
-        [1, 0, 0, 0],
-        [1, 0, 0, 1],
-    ]
+# Initialize GPIO pins
+In1 = Pin(32, Pin.OUT)
+In2 = Pin(33, Pin.OUT)
+In3 = Pin(25, Pin.OUT)
+In4 = Pin(26, Pin.OUT)
 
-    def __init__(self, pin1, pin2, pin3, pin4, delay=2):
-        self.pins = [pin1, pin2, pin3, pin4]
-        self.delay = delay  # Delay between steps in milliseconds
-        self._state = 0
+# Create a stepper motor object
+s1 = Stepper.create(In1, In2, In3, In4, delay=2)
 
-    def step(self, steps):
-        direction = 1 if steps >= 0 else -1
-        steps = abs(steps)
-        for _ in range(steps):
-            state = self.HALF_STEP[self._state]
-            for i, pin in enumerate(self.pins):
-                pin.value(state[i])
-            self._state = (self._state + direction) % len(self.HALF_STEP)
-            time.sleep_ms(self.delay)
+# Control the motor
+#s1.step(100)       # Move 100 steps clockwise
+#s1.step(-50)       # Move 50 steps counter-clockwise
+s1.angle(180)       # Rotate 90 degrees clockwise
+#s1.angle(180, -1) # Rotate 180 degrees counter-clockwise
 
-    def angle(self, degrees, direction=1):
-        steps = int((degrees / 360) * self.FULL_ROTATION)
-        self.step(steps * direction)
-
-# Helper function to create a stepper instance
-def create(pin1, pin2, pin3, pin4, delay=2):
-    return Stepper(pin1, pin2, pin3, pin4, delay)
