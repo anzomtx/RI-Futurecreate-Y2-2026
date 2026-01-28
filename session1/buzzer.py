@@ -1,6 +1,8 @@
+# 1. import statements
 import machine
 import time
 
+# 2. functions and variables 
 # Define the GPIO pin that is connected to the buzzer
 buzzer = machine.PWM(machine.Pin(25))
 
@@ -60,10 +62,13 @@ def tone(pin,frequency,duration):
     time.sleep_ms(duration)
     pin.duty(0)
 
-# Play the melody
-for note in melody:
-    tone(buzzer, note[0], note[1])
-    time.sleep_ms(50)
+
+# 3. main loop
+while True:
+    # Play the melody
+    for note in melody:
+        tone(buzzer, note[0], note[1])
+        time.sleep_ms(50)
 
 
 

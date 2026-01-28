@@ -1,6 +1,8 @@
+# 1. import statements
 from machine import Pin
 from rotary_irq_esp import RotaryIRQ
 
+# 2. functions and variables 
 # Initialize the rotary encoder with internal pull-ups enabled
 rotary_encoder = RotaryIRQ(
     pin_num_clk=22,   # connect to CLK
@@ -13,6 +15,8 @@ rotary_encoder.set(min_val=0, max_val=20, range_mode=RotaryIRQ.RANGE_WRAP)
 
 last_value = rotary_encoder.value()
 
+
+# 3. main loop
 while True:
     current_value = rotary_encoder.value()
     

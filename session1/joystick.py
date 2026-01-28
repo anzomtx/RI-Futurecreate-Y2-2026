@@ -1,7 +1,9 @@
+# 1. import statements
 from DIYables_MicroPython_Joystick import Joystick
 from machine import Pin, ADC
 import time
 
+# 2. functions and variables 
 VRX_PIN = 33 # connect to VRX pin of joystick
 VRY_PIN = 32 # connect to VRY pin of joystick
 SW_PIN = 25  # connect to SW pin of joystick
@@ -20,6 +22,8 @@ joystick = Joystick(pin_x=VRX_PIN, pin_y=VRY_PIN, pin_button=SW_PIN)
 # Configure the debounce time if necessary (default is 50ms)
 joystick.set_debounce_time(100)  # debounce time set to 100 milliseconds
 
+
+# 3. main loop
 while True:
     joystick.loop()  # Must be called frequently to process button debouncing
 
